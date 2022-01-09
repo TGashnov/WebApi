@@ -56,9 +56,12 @@ namespace Task2._1.Controllers
 
         [HttpPost]
         [HttpPost("{force}")]
-        public IActionResult PostLine(string inputText, string force = null)
+        public IActionResult PostLine([FromBody] string inputText, string force = null)
         {
-            var response = FileService.PostLine(inputText, force);
+            var boolForce = false;
+            if (force != null) boolForce = true;
+
+            var response = FileService.PostLine(inputText, boolForce);
             if (response == 0)
             {
                 return Ok();
@@ -70,7 +73,7 @@ namespace Task2._1.Controllers
         }
 
         [HttpPut("{row}")]
-        public IActionResult PutLine(string inputText, int row)
+        public IActionResult PutLine([FromBody] string inputText, int row)
         {
             FileService.PutLine(inputText, row);
             return Ok();

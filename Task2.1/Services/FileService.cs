@@ -44,11 +44,11 @@ namespace Task2._1.Services
             return sb.ToString();
         }
 
-        public int PostLine(string inputText, string force)
+        public int PostLine(string inputText, bool force)
         {
             void AppendLine() => File.AppendAllText(FilePath, inputText + "\n");
 
-            if (force != null)
+            if (force == true)
             {
                 AppendLine();
             }
